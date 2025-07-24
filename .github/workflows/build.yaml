@@ -62,10 +62,6 @@ jobs:
       - name: Checkout repo (for env files)
         uses: actions/checkout@v4
 
-      - name: Set .env from input
-        run: |
-          cp .${{ github.event.inputs.env }}.env site/.env
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

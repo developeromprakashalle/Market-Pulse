@@ -3,9 +3,14 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main  
+
+    paths-ignore:
+        - .github/workflows/build.yaml
+        - .github/actions/setupnode/action.yaml
+        - .github/actions/setupnode/package.json
+        - .github/actions/setupnode/package-lock.json
+        -  Readme.md
+  workflow_dispatch:
 
 jobs:
   # Build job
@@ -42,7 +47,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     # Specify runner + deployment step
-    runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

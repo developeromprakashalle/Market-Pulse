@@ -1,5 +1,6 @@
-  name : Download  node and npm install    
-  runs:
+name: "Download  node and npm install"
+description: "Download Node.js setup action and install npm dependencies"
+runs:
     using: composite
     steps:
       - name: Set up Node.js

@@ -35,11 +35,11 @@ jobs:
       - name: Build the project
         run: npm run build
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3  # ✅ correct action
         with:
-          name: build-artifacts
-          path: dist  # adjust this to your output folder (e.g., web-build, build, etc.)
+          path: dist  # ✅ points to your built files (adjust if needed)
+
 
   deploy:
     runs-on: ubuntu-latest
@@ -53,14 +53,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: build-artifacts
-          path: site
-
-      - name: Checkout repo (for env files)
-        uses: actions/checkout@v4
 
       - name: Deploy to GitHub Pages
         id: deployment
